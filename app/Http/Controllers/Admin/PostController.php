@@ -3,11 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        view()->share('posts', Post::paginate(10));
+        return view('admin.post.index');
     }
 
     /**
@@ -25,7 +34,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        view()->share('categories', Category::all());
+        return view('admin.post.create');
     }
 
     /**
@@ -36,7 +46,27 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $this->validate($request, [
+            'title' => 'required|unique:posts|max:255',
+            'slug' => 'required|unique:posts|max:255',
+            'status' => 'required|in:approved,draft,rejected,premium,published',
+            'content' => 'required',
+            'category_id' => 'exists:categories,id|nullable',
+            'image' => 'string|url|nullable'
+        ]);
+        
+        $post = new Post;
+        $post->title = $request->title;
+        $post->slug = $request->slug;
+        $post->status = $request->status;
+        $post->image = $request->image;
+        // $post->category_id = $request->category_id;
+        $post->content = $request->content;
+        $post->author = auth()->user()->id;
+        $post->save();
+
+        return redirect()->route('admin.post.index')->with('success', 'Post created successfully');
     }
 
     /**
@@ -47,7 +77,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        view()->share('post', $post);
+        return view('admin.post.show');
     }
 
     /**
@@ -58,7 +89,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        view()->share('categories', Category::all());
+        view()->share('post', $post);
+        return view('admin.post.edit');
     }
 
     /**
@@ -70,7 +103,27 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        
+        
+        $this->validate($request, [
+            'title' => 'required|unique:posts|max:255',
+            'slug' => 'required|unique:posts,slug,'.$post->id.'|max:255',
+            'status' => 'required|in:approved,draft,rejected,premium,published',
+            'content' => 'required',
+            'category_id' => 'exists:categories,id|nullable',
+            'image' => 'string|url|nullable'
+        ]);
+        
+        $post->title = $request->title;
+        $post->slug = $request->slug;
+        $post->status = $request->status;
+        $post->image = $request->image;
+        // $post->category_id = $request->category_id;
+        $post->content = $request->content;
+        $post->author = auth()->user()->id;
+        $post->save();
+
+        return redirect()->route('admin.post.index')->with('success', 'Post updated successfully');
     }
 
     /**
@@ -81,6 +134,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('admin.post.index')->with('success', 'Post deleted successfully');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
@@ -28,5 +29,7 @@ class AppServiceProvider extends ServiceProvider
             $view_name = str_replace('.', '-', $view->getName());
             view()->share('blade', $view_name);
         });
+
+        Paginator::useBootstrap();
     }
 }

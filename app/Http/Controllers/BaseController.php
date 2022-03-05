@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+use App\Models\Post;
 use App\Models\Subscription;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class BaseController extends Controller
 {
@@ -24,7 +29,7 @@ class BaseController extends Controller
 
     public function post()
     {
-        return view('post');
+        return view('post')->with('post', Post::find(38));
     }
 
     public function search()
@@ -53,5 +58,29 @@ class BaseController extends Controller
         $subscription->save();
 
         return response()->json(['message' => 'Subscription successful'], 201);
+    }
+
+    public function comment(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|min:3|max:20',
+            'email' => 'required|email',
+            'body' => 'required',
+            'commentable_id' => 'required',
+            'commentable_type' => 'required',
+        ]);
+
+        $user = User::firstOrCreate(['email' => $request->email], ['name' => $request->name, 'password' => Hash::make('password')]);
+
+        Auth::login($user);
+
+        $comment = new Comment();
+        $comment->body = $request->body;
+        $comment->author = $user->id;
+        $comment->commentable_id = $request->commentable_id;
+        $comment->commentable_type = $request->commentable_type;
+        $comment->save();
+
+        return back();
     }
 }

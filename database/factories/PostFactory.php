@@ -19,7 +19,7 @@ class PostFactory extends Factory
         return [
             'title' => $this->faker->name(),
             'slug' => $this->faker->unique()->safeEmail(),
-            'body' => $this->faker->text(),
+            'content' => $this->faker->text(),
             'author' => random_int(1,2)
         ];
     }

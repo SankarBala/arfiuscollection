@@ -9,7 +9,7 @@ class Comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['body', 'author'];
+    protected $fillable = ['body', 'author', 'commentable_id', 'commentable_type'];
 
 
     public function commentable()
@@ -20,5 +20,10 @@ class Comment extends Model
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'author');
     }
 }

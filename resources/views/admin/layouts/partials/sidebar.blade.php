@@ -34,19 +34,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link ml-4">
+                            <a href="{{ route('admin.post.create')}}" class="nav-link ml-4">
                                 <i class="nav-icon fas fa-edit mr-2"> </i>
                                 <p> Create post</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link ml-4">
+                            <a href="{{ route('admin.post.index') }}" class="nav-link ml-4">
                                 <i class="nav-icon fas fa-list-alt mr-2"> </i>
                                 <p> All post</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link ml-4">
+                            <a href="{{route('admin.category.index') }}" class="nav-link ml-4">
                                 <i class="nav-icon fas fa-layer-group mr-2"></i>
                                 <p> Categories</p>
                             </a>

@@ -7,6 +7,7 @@
     <title>Arfius Collection</title>
     @stack('filemanagerstyles')
     <link rel="stylesheet" href="{{ asset('dashboard/plugins/fontawesome-free/css/all.min.css') }}">
+    @stack('beforeStyles')
     <link rel="stylesheet" href="{{ asset('dashboard/dist/css/adminlte.min2167.css?v=3.2.0') }}">
     @stack('styles')
 </head>
@@ -39,6 +40,7 @@
 
     <script src="{{ asset('dashboard/plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    @stack('beforeScripts')
     <script src="{{ asset('dashboard/dist/js/adminlte.min2167.js') }}"></script>
     @stack('scripts')
 </body>

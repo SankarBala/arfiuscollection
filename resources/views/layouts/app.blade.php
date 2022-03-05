@@ -19,7 +19,7 @@
 
 <body>
     <!-- Preloader -->
-    @include('components.preloader')
+    {{-- @include('components.preloader') --}}
     <!-- Preloader End -->
 
     <!-- Document Wrapper ========== -->

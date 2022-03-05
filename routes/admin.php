@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,11 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::resource('post', PostController::class)->names('post');
+Route::resource('category', CategoryController::class)->names('category');
 
-Route::get('/', function () {
-    return view('admin.index');
-})->name('index');
-
-Route::get('/file-manager', function () {
-    return view('admin.file-manager');
-})->name('file-manager');
+Route::get('/', [DashboardController::class, 'index'])->name('index');
+Route::get('/file-manager', [DashboardController::class, 'file_manager'])->name('file-manager');
