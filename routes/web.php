@@ -22,6 +22,7 @@ Route::get('/categories', [BaseController::class, 'categories'])->name('categori
 Route::get('/post/{post:slug}', [BaseController::class, 'post'])->name('post');
 Route::get('/search', [BaseController::class, 'search'])->name('search');
 Route::get('/contact-us', [BaseController::class, 'contactUs'])->name('contact');
+Route::post('/contact-us', [BaseController::class, 'contactRequest'])->name('contact-request');
 Route::get('/about-us', [BaseController::class, 'aboutUs'])->name('about');
 Route::post('/subscription', [BaseController::class, 'subscription'])->name('subscription');
 Route::post('/comment', [BaseController::class, 'comment'])->name('comment-post');
@@ -32,4 +33,5 @@ Auth::routes();
 
 Route::get('/social-auth/{provider}', [SocialAuthController::class, 'redirectToProvider'])->name('social-auth');
 Route::get('/social-auth/{provider}/callback', [SocialAuthController::class, 'handleProviderCallback'])->name('social-auth-callback');
+
 

@@ -55,6 +55,8 @@
                                             </a>
                                         </li>
                                     </ul>
+                                </li>
+                                
                                 @endauth
                         </ul>
                     </div>

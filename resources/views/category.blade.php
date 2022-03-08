@@ -27,7 +27,7 @@
                                                         class="fas fa-calendar-alt"></i>{{ $post->updated_at->format('Y-m-d') }}
                                                 </li>
                                                 <li><a href=""><i
-                                                            class="fas fa-user"></i>{{ optional($post->user)->name }}</a>
+                                                            class="fas fa-user"></i>Arfius Collection</a>
                                                 </li>
                                                 <li><a href=""><i
                                                             class="fas fa-comments"></i>{{ $post->comments->count() }}</a>

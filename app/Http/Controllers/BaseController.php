@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactRequest;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
@@ -9,10 +10,20 @@ use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\View;
 
 class BaseController extends Controller
 {
+    public function __construct()
+    {
+        View::share('categoriesHasPost', Category::has('posts')->get());
+        View::share('recentPosts', Post::where('status', 'published')->orderBy('created_at', 'desc')->take(4)->get());
+        View::share('popularPosts', Post::where('status', 'published')->orderBy('view', 'desc')->take(5)->get());
+    }
+
     public function index()
     {
         $posts = Post::where('status', 'published')->orderBy('created_at', 'desc')->paginate(5);
@@ -33,6 +44,13 @@ class BaseController extends Controller
 
     public function post(Post $post)
     {
+        if (!Gate::allows('view-post', $post)) {
+            abort(403);
+        }
+
+        $post->increment('view');
+        view()->share('related_posts', Post::where('category_id', $post->category_id)->where('id', '!=', $post->id)->orderBy('created_at', 'desc')->take(4)->get());
+
         return view('post')->with('post', $post);
     }
 
@@ -52,6 +70,24 @@ class BaseController extends Controller
     public function contactUs()
     {
         return view('contact-us');
+    }
+
+    public function contactRequest(Request $request)
+    {
+        $request->validate(
+            [
+                'name' => 'required',
+                'email' => 'required|email',
+                'subject' => 'required',
+                'message' => 'required'
+            ]
+        );
+
+        Mail::to(env('ADMIN_EMAIL'))->queue(new ContactRequest($request->all()));
+
+
+
+        return redirect()->back()->with('success', 'Your message has been sent successfully.');
     }
 
     public function aboutUs()

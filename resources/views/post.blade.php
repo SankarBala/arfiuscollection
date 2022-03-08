@@ -18,7 +18,7 @@
                         <h2 class="title-blog text-7">{{ $post->title }}</h2>
                         <ul class="meta-blog mb-4">
                             <li><i class="fas fa-calendar-alt"></i> {{ $post->updated_at->format('Y-m-d') }}</li>
-                            <li><a href=""><i class="fas fa-user"></i> {{optional($post->user)->name }} </a></li>
+                            <li><a href=""><i class="fas fa-user"></i> Arfius Collection </a></li>
                             <li><a href="#comments"><i class="fas fa-comments"></i> {{ $post->comments->count() }}</a>
                             </li>
                         </ul>
@@ -26,7 +26,20 @@
                         <div class="card-body px-0 pb-0">
                             {{ $post->content }}
                         </div>
-                        <hr class="pb-3">
+                        <hr class="pb-0">
+                        <div class="d-flex pb-4 mt-0">
+                            <div class="mr-auto mt-1">
+                                <div class="d-inline mr-4 btn btn-info btn-sm">Views: {{ $post->view }}</div>
+                            </div>
+                            <div class="d-inline-block rounded p-1"
+                                style="width:110px; height:38px; background-color:#1877F2;">
+                                <div class="fb-share-button d-inline mr-4" data-href="{{ route('post', $post) }}"
+                                    data-layout="button_count" data-size="large">
+                                </div>
+                            </div>
+                        </div>
+
+
 
                         <!-- Tags & Share Social ======== -->
                         {{-- <div class="row mb-3">
@@ -88,46 +101,23 @@
                         <h5 class="mb-4 mt-3">Related Posts</h5>
                         <div class="side-post">
                             <div class="row">
-                                <div class="col-12 col-md-6 mb-3">
-                                    <div class="item-post">
-                                        <div class="img-thumb"><a href="blog-single.html"><img class="rounded"
-                                                    src="images/blog/post-5-65x65.jpg" title="" alt=""></a></div>
-                                        <div class="caption"> <a href="blog-single.html">How to start a mobile top-up
-                                                recharge business?</a>
-                                            <p class="date-post">April 24, 2020</p>
+                                @foreach ($related_posts as $post)
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <div class="item-post">
+                                            <div class="img-thumb">
+                                                <a href="{{ route('post', $post) }}">
+                                                    <img class="rounded w-100 h-100"
+                                                        src="http://localhost:8000/images/blog/post-1.jpg" title=""
+                                                        alt=""></a>
+                                            </div>
+                                            <div class="captions"> <a class="text-info" href="{{ route('post', $post) }}">
+                                                    {{ $post->title }}
+                                                </a>
+                                                <p class="date-post">{{ $post->created_at }}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12 col-md-6 mb-3">
-                                    <div class="item-post">
-                                        <div class="img-thumb"><a href="blog-single.html"><img class="rounded"
-                                                    src="images/blog/post-2-65x65.jpg" title="" alt=""></a></div>
-                                        <div class="caption"> <a href="blog-single.html">Staggering Sites to Visit
-                                                Near United Airport to Break The Monotony</a>
-                                            <p class="date-post">April 24, 2020</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 mb-3">
-                                    <div class="item-post">
-                                        <div class="img-thumb"><a href="blog-single.html"><img class="rounded"
-                                                    src="images/blog/post-3-65x65.jpg" title="" alt=""></a></div>
-                                        <div class="caption"> <a href="blog-single.html">Minimise Your Risk.
-                                                Maximise Your Returns</a>
-                                            <p class="date-post">April 24, 2020</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 mb-3">
-                                    <div class="item-post">
-                                        <div class="img-thumb"><a href="blog-single.html"><img class="rounded"
-                                                    src="images/blog/post-4-65x65.jpg" title="" alt=""></a></div>
-                                        <div class="caption"> <a href="blog-single.html">List of Countries Offering
-                                                Visa on Arrival for Indians in 2021</a>
-                                            <p class="date-post">April 24, 2020</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                         <hr>
@@ -186,3 +176,16 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+@endpush
