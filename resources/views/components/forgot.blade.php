@@ -4,7 +4,6 @@
             <div class="modal-body py-4 px-0">
                 <button type="button" class="close close-outside" data-dismiss="modal" aria-label="Close"> <span
                         aria-hidden="true">&times;</span> </button>
-                <!-- Forgot Password Form ================== -->
                 <div class="row">
                     <div class="col-11 col-md-10 mx-auto">
                         <h3 class="text-center mt-3 mb-4">Forgot your password?</h3>
@@ -24,7 +23,6 @@
                         </p>
                     </div>
                 </div>
-                <!-- Forgot Password Form End -->
             </div>
         </div>
     </div>

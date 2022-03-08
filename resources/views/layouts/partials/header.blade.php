@@ -4,8 +4,12 @@
             <div class="header-column justify-content-start">
 
                 <!-- Logo ======== -->
-                <div class="logo"> <a href="{{route('index')}}" class="d-flex"
-                        title="Home"><img src="images/logo-light.png" alt="Quickai" /></a> </div>
+                <div class="logo">
+                    <a href="{{ route('index') }}" class="d-flex" title="Home">
+                        {{-- <img src="" alt="Quickai" /> --}}
+                        <h3>Arfius Collection</h3>
+                    </a>
+                </div>
                 <!-- Logo end -->
 
             </div>
@@ -15,28 +19,43 @@
                 <nav class="primary-menu navbar navbar-expand-lg">
                     <div id="header-nav" class="collapse navbar-collapse">
                         <ul class="navbar-nav">
-
-                            <li class="dropdown"> <a class="dropdown-toggle" href="#">Pages</a>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#">My
-                                            Profile</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="profile.html">Personal Information</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="dropdown-item" href="payment.html">Payment</a></li>
-                                </ul>
+                            <li class=""><a class=""
+                                    href="{{ route('index') }}">Home</a>
                             </li>
-                            <li class=""><a class="" href="{{route('search')}}">Search</a></li>
-                            <li class=""><a class="" href="{{route('category')}}">category</a></li>
-                            <li class=""><a class="" href="{{route('categories')}}">categories</a></li>
-                            <li class=""><a class="" href="{{route('contact')}}">Contact</a></li>
-                            <li class=""><a class="" href="{{route('about')}}">About</a></li>
-                            <li class=""><a class="" href="{{route('post')}}">post</a></li>
-
-
-
+                            <li class=""><a class=""
+                                    href="{{ route('index') }}">Write a blog</a>
+                            </li>
+                            <li class=""><a class=""
+                                    href="{{ route('categories') }}">categories</a></li>
+                            <li class=""><a class=""
+                                    href="{{ route('contact') }}">Contact Us</a></li>
+                            <li class=""><a class="" href="{{ route('privacyPolicies') }}">Privacy Policy</a>
+                            </li>
+                            <li class=""><a class="" href="{{ route('about') }}">About Us</a>
+                            </li>
+                            @guest
+                                <li class=""><a class="" href="{{ route('login') }}">Login</a>
+                                </li>
+                                <li class=""><a class=""
+                                        href="{{ route('register') }}">Register</a></li>
+                            @endguest
+                            @auth
+                                <li class="dropdown"> <a class="dropdown-toggle"
+                                        href="#">{{ auth()->user()->name }}</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{route('profile') }}">My Profile</a></li>
+                                        <li>
+                                            <form action="{{ route('logout') }}" method="POST" id="logout-form"
+                                                class="d-none">
+                                                @csrf
+                                            </form>
+                                            <a class="dropdown-item" href="javascript:void(0)"
+                                                onclick="$('#logout-form').submit();">
+                                                Logout
+                                            </a>
+                                        </li>
+                                    </ul>
+                                @endauth
                         </ul>
                     </div>
                 </nav>
@@ -47,7 +66,7 @@
                     <span></span> <span></span> <span></span> </button>
 
                 <!-- Login Signup ======= -->
-                <nav class="login-signup navbar navbar-expand separator ml-sm-2 pl-sm-2">
+                {{-- <nav class="login-signup navbar navbar-expand separator ml-sm-2 pl-sm-2">
                     <ul class="navbar-nav">
                         <li class="profile"><a class="pr-0" data-toggle="modal"
                                 data-target="#login-modal" href="#" title="Login / Sign up"><span
@@ -56,7 +75,7 @@
                             </a>
                         </li>
                     </ul>
-                </nav>
+                </nav> --}}
             </div>
         </div>
     </div>

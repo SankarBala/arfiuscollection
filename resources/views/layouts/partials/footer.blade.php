@@ -4,19 +4,19 @@
             <div class="col-sm-6 col-md mb-3 mb-md-0">
                 <h4 class="text-3 text-white font-weight-400 mb-3">Important Links</h4>
                 <ul class="nav flex-column">
-                    <li class="nav-item"> <a class="nav-link" href="{{route('about')}}">About Us</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{route('contact')}}">Contact US</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#">Privacy Policy</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#">Faq</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('about') }}">About Us</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('contact') }}">Contact US</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('privacyPolicies') }}">Privacy Policy</a></li>
                 </ul>
             </div>
             <div class="col-sm-6 col-md mb-3 mb-md-0">
                 <h4 class="text-3 text-white font-weight-400 mb-3">Policies</h4>
                 <ul class="nav flex-column">
-                    <li class="nav-item"> <a class="nav-link" href="#">Privacy Policy</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#">Terms & Conditions</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#">Refund Policy</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#">Grievance Policy</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('index') }}">Write a blog</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('categories') }}">categories</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('contact') }}">Contact Us</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('privacyPolicies') }}">Privacy Policy</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('about') }}">About Us</a></li>
                 </ul>
             </div>
             <div class="col-12 col-lg-3">

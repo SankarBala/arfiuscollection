@@ -23,7 +23,7 @@
     <!-- Preloader End -->
 
     <!-- Document Wrapper ========== -->
-    <div id="main-wrapper" style="background-color: skyblue;">
+    <div id="main-wrapper" style="background-color: rgb(37, 37, 37); min-height: 100vh;">
         <!-- Content ======= -->
         @yield('content')
         <!-- Content end -->

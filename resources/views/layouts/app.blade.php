@@ -11,9 +11,9 @@
     <meta name="author" content="harnishdesign.net">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900'
         type='text/css'>
-    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="vendor/font-awesome/css/all.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+    <link rel="stylesheet" type="text/css" href="{{asset('vendor/bootstrap/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('vendor/font-awesome/css/all.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/stylesheet.css') }}" />
     @stack('styles')
 </head>
 
@@ -30,9 +30,9 @@
         <!-- Header end -->
 
         <!-- Page Header  ===== -->
-        @if ($blade !== 'index')
+        {{-- @if ($blade !== 'index') --}}
             @include('layouts.partials.page-header')
-        @endif
+        {{-- @endif --}}
         <!-- Page Header end -->
 
         <!-- Content ======= -->
@@ -61,9 +61,9 @@
     <!-- Forgot Password Modal End -->
 
     <!-- Script -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="js/app.js"></script>
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     @stack('scripts')
 
 </body>

@@ -4,8 +4,7 @@
             <div class="modal-body py-4 px-0">
                 <button type="button" class="close close-outside" data-dismiss="modal" aria-label="Close"> <span
                         aria-hidden="true">&times;</span> </button>
-                <!-- Sign Up Form
-    ====================== -->
+             
                 <div class="row">
                     <div class="col-11 col-md-10 mx-auto">
                         <ul class="nav nav-tabs nav-justified mb-4" role="tablist">
@@ -20,15 +19,19 @@
                         <form id="signupForm" method="post">
                             <div class="form-group">
                                 <input type="text" class="form-control border-2" id="fullName" required
-                                    placeholder="Your Name">
+                                    placeholder="Your Name" name="name" />
                             </div>
                             <div class="form-group">
                                 <input type="email" class="form-control border-2" id="emailAddress" required
-                                    placeholder="Email Id">
+                                    placeholder="Email Id" name="email" />
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control border-2" id="loginPassword" required
-                                    placeholder="Password">
+                                    placeholder="Password" name="password" />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control border-2" id="confirmPassword" required
+                                    placeholder="Confirm Password" name="password_confirmation">
                             </div>
                             <div class="form-group my-4">
                                 <div class="form-check text-2 custom-control custom-checkbox">
@@ -44,21 +47,14 @@
                             <span class="mx-2 text-2 text-muted">Or Sign Up with Social Profile</span>
                             <hr class="flex-grow-1">
                         </div>
-                        <div class="d-flex  flex-column align-items-center mb-3">
-                            <ul class="social-icons social-icons-colored social-icons-circle">
-                                <li class="social-icons-facebook"><a href="#" data-toggle="tooltip"
-                                        data-original-title="Sign Up with Facebook"><i
-                                            class="fab fa-facebook-f"></i></a></li>
-                                <li class="social-icons-twitter"><a href="#" data-toggle="tooltip"
-                                        data-original-title="Sign Up with Twitter"><i class="fab fa-twitter"></i></a>
-                                </li>
-                                <li class="social-icons-google"><a href="#" data-toggle="tooltip"
-                                        data-original-title="Sign Up with Google"><i class="fab fa-google"></i></a>
-                                </li>
-                                <li class="social-icons-linkedin"><a href="#" data-toggle="tooltip"
-                                        data-original-title="Sign Up with Linkedin"><i
-                                            class="fab fa-linkedin-in"></i></a></li>
-                            </ul>
+                        <div class="d-flex  justify-content-center align-items-center mb-3">
+
+                            <button class="btn btn-primary btn-block my-2 mr-1" type="submit">Register with
+                                Facebook</button>
+
+                            <button class="btn btn-danger btn-block my-2 ml-1" type="submit">Register with
+                                Google</button>
+
                         </div>
                         <p class="text-2 text-center mb-0">Already have an account? <a class="btn-link" href=""
                                 data-toggle="modal" data-target="#login-modal" data-dismiss="modal">Log

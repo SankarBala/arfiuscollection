@@ -1,13 +1,17 @@
 <aside class="col-lg-4 col-xl-3">
     <!-- Search ========= -->
-    <div class="input-group shadow-sm mb-4">
-        <input class="form-control shadow-none border-0 pr-0" type="search" id="search-input" placeholder="Search"
-            value="">
-        <div class="input-group-append"> <span class="input-group-text bg-white border-0 p-0">
-                <button class="btn text-muted shadow-none px-3 border-0" type="button"><i
-                        class="fa fa-search"></i></button>
-            </span> </div>
-    </div>
+    <form method="get" action="{{ route('search') }}" class="d-inline">
+        <div class="input-group shadow-sm mb-4">
+            <input class="form-control shadow-none border-0 pr-0" type="search" id="search-input" placeholder="Search"
+              name="query"  value="">
+            <div class="input-group-append">
+                <span class="input-group-text bg-white border-0 p-0">
+                    <button class="btn text-muted shadow-none px-3 border-0" type="submit" />
+                    <i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>
+    </form>
 
     <!-- Categories ========== -->
     <div class="bg-white shadow-sm rounded p-3 mb-4">

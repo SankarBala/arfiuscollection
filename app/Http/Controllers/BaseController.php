@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Subscription;
@@ -14,27 +15,38 @@ class BaseController extends Controller
 {
     public function index()
     {
-        return view('index');
+        $posts = Post::where('status', 'published')->orderBy('created_at', 'desc')->paginate(5);
+        return view('index', compact('posts'));
     }
 
-    public function category()
+    public function category(Request $request, Category $category)
     {
-        return view('category');
+        $posts = $category->posts()->where('status', 'published')->orderBy('created_at', 'desc')->paginate(10);
+        return view('category', compact('posts'));
     }
 
     public function categories()
     {
-        return view('categories');
+        $categories = Category::with('children')->where('parent_id', 0)->get();
+        return view('categories', compact('categories'));
     }
 
-    public function post()
+    public function post(Post $post)
     {
-        return view('post')->with('post', Post::find(38));
+        return view('post')->with('post', $post);
     }
 
-    public function search()
+    public function search(Request $request)
     {
-        return view('search');
+        $search = $request->input('query');
+
+        $posts = Post::query()
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('content', 'LIKE', "%{$search}%")
+            ->orWhere('slug', 'LIKE', "%{$search}%")
+            ->paginate(10);
+
+        return view('search', compact('posts'));
     }
 
     public function contactUs()
@@ -46,6 +58,18 @@ class BaseController extends Controller
     {
         return view('about-us');
     }
+
+    public function profile()
+    {
+        view()->share('user',  Auth::user());
+        return view('profile');
+    }
+
+    public function privacyPolicies()
+    {
+        return view('privacy-policy');
+    }
+
 
     public function subscription(Request $request)
     {

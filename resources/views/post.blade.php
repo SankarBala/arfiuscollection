@@ -18,13 +18,13 @@
                         <h2 class="title-blog text-7">{{ $post->title }}</h2>
                         <ul class="meta-blog mb-4">
                             <li><i class="fas fa-calendar-alt"></i> {{ $post->updated_at->format('Y-m-d') }}</li>
-                            <li><a href=""><i class="fas fa-user"></i> {{ $post->user->name }} </a></li>
+                            <li><a href=""><i class="fas fa-user"></i> {{optional($post->user)->name }} </a></li>
                             <li><a href="#comments"><i class="fas fa-comments"></i> {{ $post->comments->count() }}</a>
                             </li>
                         </ul>
                         <img class="img-fluid" src="images/blog/post-1.jpg" alt="">
                         <div class="card-body px-0 pb-0">
-                            {{ $post->body }}
+                            {{ $post->content }}
                         </div>
                         <hr class="pb-3">
 
