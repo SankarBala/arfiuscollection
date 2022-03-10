@@ -12,8 +12,13 @@
             </div>
         </div>
     </form>
-
-
+    @if ($blade == 'post')
+        <div class="bg-white shadow-sm rounded p-3 mb-4">
+            <h4 class="text-5">Table of Contents</h4>
+            <hr class="mx-n3">
+            <div class="side-post" id="toc"></div>
+        </div>
+    @endif
     <!-- Recent Posts ====== -->
     @if ($blade !== 'index')
         <div class="bg-white shadow-sm rounded p-3 mb-4">
@@ -24,8 +29,7 @@
                     <div class="item-post">
                         <div class="img-thumb">
                             <a href="{{ route('post', $post) }}">
-                                <img class="rounded w-100" src="{{$post->image }}" title=""
-                                    alt="">
+                                <img class="rounded w-100" src="{{ $post->image }}" title="" alt="">
                             </a>
                         </div>
                         <div class="captions"> <a class="text-dark"
@@ -47,8 +51,7 @@
                 <div class="item-post">
                     <div class="img-thumb">
                         <a href="{{ route('post', $post) }}">
-                            <img class="rounded w-100" src="{{$post->image }}" title=""
-                                alt="">
+                            <img class="rounded w-100" src="{{ $post->image }}" title="" alt="">
                         </a>
                     </div>
                     <div class="captions"> <a class="text-dark"
@@ -69,7 +72,8 @@
                 @foreach ($categoriesHasPost as $category)
                     <li>
                         <a href="{{ route('category', $category) }}">
-                            {{ $category->name }}<span class="">{{ $category->posts->count() }}</span>
+                            {{ $category->name }}<span
+                                class="">{{ $category->posts->count() }}</span>
                         </a>
                     </li>
                 @endforeach

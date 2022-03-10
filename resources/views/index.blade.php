@@ -27,7 +27,7 @@
                                                     {{ $post->comments->count() }}</a></li>
                                         </ul>
                                         <div class="text-justify">
-                                            {{ Str::words($post->content, 60, '...') }}
+                                            {!! Str::words($post->content, 60, '...') !!}
                                         </div>
                                         <a href="{{ route('post', $post) }}" class="btn btn-primary btn-sm">Read more</a>
                                     </div>

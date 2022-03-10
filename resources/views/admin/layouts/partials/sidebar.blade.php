@@ -6,12 +6,12 @@
 
     <div class="sidebar">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
+            {{-- <div class="image">
                 <img src="" class="img-circle elevation-2" alt="Image">
-            </div>
-            <div class="info">
-                <a href="#" class="d-block">
-                    <h5>{{ auth()->user()->name }} ({{ auth()->user()->id }}) </h5>
+            </div> --}}
+            <div class="info ml-3">
+                <a href="#" class="d-block m-auto">
+                    <h5>{{ auth()->user()->name }} </h5>
                 </a>
             </div>
         </div>

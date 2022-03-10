@@ -7,26 +7,22 @@
     <div id="content">
         <div class="container">
             <div class="row">
-
-                <!-- Left Sidebar ======== -->
                 @include('layouts.partials.sidebar')
-                <!-- Left Sidebar End -->
-
-                <!-- Middle Panel ========= -->
                 <div class="col-lg-8 col-xl-9">
                     <div class="blog-post card shadow-sm border-0 mb-4 p-4">
                         <h2 class="title-blog text-7">{{ $post->title }}</h2>
                         <ul class="meta-blog mb-4">
                             <li><i class="fas fa-calendar-alt"></i> {{ $post->updated_at->format('Y-m-d') }}</li>
                             <li><a href=""><i class="fas fa-user"></i> Arfius Collection </a></li>
-                            <li><a href="#comments"><i class="fas fa-comments"></i> {{ $post->comments->where('status', 'approved')->count() }}</a>
+                            <li><a href="#comments"><i class="fas fa-comments"></i>
+                                    {{ $post->comments->where('status', 'approved')->count() }}</a>
                             <li><a href="#read"><i class="fas fa-eye"></i> {{ $post->view }}</a>
                             <li class="fb-share-button d-inline" data-href="{{ route('post', $post) }}"
                                 data-layout="button_count" data-size="large"></li>
                         </ul>
                         <img class="img-fluid" src="images/blog/post-1.jpg" alt="">
                         <div class="card-body px-0 pb-0 text-justify">
-                            {{ $post->content }}
+                            <content>{!! $post->content !!} </content>
                         </div>
                         <hr class="pb-0">
                         <div class="d-flex pb-4 mt-0">
@@ -37,15 +33,6 @@
                                         Previous Post </a>
                                 @endif
                             </div>
-                            {{-- <div class="mr-auto mt-1">
-                                <div class="d-inline mr-4 btn btn-info btn-sm">Views: {{ $post->view }}</div>
-                            </div>
-                            <div class="mr-auto d-inline-block rounded p-1"
-                                style="width:110px; height:38px; background-color:#1877F2;">
-                                <div class="fb-share-button d-inline mr-4" data-href="{{ route('post', $post) }}"
-                                    data-layout="button_count" data-size="large">
-                                </div>
-                            </div> --}}
                             <div class="mt-1">
                                 @if ($nextPost)
                                     <a href="{{ route('post', $nextPost) }}" class="btn btn-outline-primary btn-sm">
@@ -139,7 +126,8 @@
                         <hr>
 
                         <!-- Comments ========= -->
-                        <h5 id="comments" class="mb-4 mt-3">Comments ({{ $post->comments->where('status', 'approved')->count() }})</h5>
+                        <h5 id="comments" class="mb-4 mt-3">Comments
+                            ({{ $post->comments->where('status', 'approved')->count() }})</h5>
                         <div class="post-comment">
                             <ul>
                                 @foreach ($post->comments->where('status', 'approved') as $comment)
@@ -186,8 +174,6 @@
 
                     </div>
                 </div>
-                <!-- Middle Panel End -->
-
             </div>
         </div>
     </div>
@@ -203,5 +189,14 @@
             js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script src="{{ asset('js/jquery.toc.min.js') }}"></script>
+    <script type="text/javascript">
+        $('#toc').initTOC({
+            selector: 'h1, h2, h3, h4, h5, h6',
+            scope: 'content',
+            overwrite: false,
+            prefix: 'section'
+        });
     </script>
 @endpush

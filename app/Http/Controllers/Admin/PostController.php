@@ -51,7 +51,7 @@ class PostController extends Controller
         $this->validate($request, [
             'title' => 'required|unique:posts|max:255',
             'slug' => 'required|unique:posts|max:255',
-            'status' => 'required|in:approved,draft,rejected,premium,published',
+            'status' => 'required|in:publishable,draft,rejected,premium,published',
             'content' => 'required',
             'category_id' => 'exists:categories,id|nullable',
             'image' => 'string|url|nullable'

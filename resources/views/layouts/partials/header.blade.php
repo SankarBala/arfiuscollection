@@ -43,7 +43,7 @@
                                 <li class="dropdown"> <a class="dropdown-toggle"
                                         href="#">{{ auth()->user()->name }}</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{route('profile') }}">My Profile</a></li>
+                                        {{-- <li><a href="{{route('profile') }}">My Profile</a></li> --}}
                                         <li>
                                             <form action="{{ route('logout') }}" method="POST" id="logout-form"
                                                 class="d-none">

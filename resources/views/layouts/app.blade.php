@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
     <link href="images/favicon.png" rel="icon" />
     <title>Arfius Collection</title>
-    <meta name="description" content="{{env('APP_NAME') }}">
-    <meta name="author" content="{{env('APP_NAME')}}">
+    <meta name="description" content="{{ env('APP_NAME') }}">
+    <meta name="author" content="{{ env('APP_NAME') }}">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900'
         type='text/css'>
-    <link rel="stylesheet" type="text/css" href="{{asset('vendor/bootstrap/css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{asset('vendor/font-awesome/css/all.min.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{asset('css/stylesheet.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/font-awesome/css/all.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/stylesheet.css') }}" />
     @stack('styles')
 </head>
 
@@ -31,7 +31,7 @@
 
         <!-- Page Header  ===== -->
         {{-- @if ($blade !== 'index') --}}
-            @include('layouts.partials.page-header')
+        @include('layouts.partials.page-header')
         {{-- @endif --}}
         <!-- Page Header end -->
 
@@ -64,6 +64,7 @@
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    
     @stack('scripts')
 
 </body>

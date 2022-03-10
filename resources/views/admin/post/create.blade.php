@@ -10,9 +10,7 @@
                 <div class="card card-default">
                     <div class="card-header">
                         <h3 class="card-title">Create Post</h3>
-
                     </div>
-
                     <div class="card-body" style="display: block;">
                         <div class="row">
                             <div class="col">
@@ -25,11 +23,17 @@
                                                 <label for="title">Title</label>
                                                 <input type="text" name="title" class="form-control" id="title"
                                                     placeholder="Title">
+                                                @error('title')
+                                                    {{ $message }}
+                                                @enderror
                                             </div>
                                             <div class="form-group">
                                                 <label for="slug">Slug</label>
                                                 <input type="text" name="slug" class="form-control" id="slug"
                                                     placeholder="Slug">
+                                                @error('slug')
+                                                    {{ $message }}
+                                                @enderror
                                             </div>
 
                                             <div class="form-group">
@@ -41,6 +45,9 @@
                                                         </option>
                                                     @endforeach
                                                 </select>
+                                                @error('category')
+                                                    {{ $message }}
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -60,6 +67,9 @@
                                                         onclick="selectImage()">Select Image</button>
 
                                                 </div>
+                                                @error('image')
+                                                    {{ $message }}
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -70,6 +80,9 @@
                                         <label for="content">Post Content</label>
                                         <textarea name="content" id="content" cols="30" rows="10"
                                             class="form-control"></textarea>
+                                        @error('content')
+                                            {{ $message }}
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" name="status" value="draft" class="btn btn-primary">Save as
@@ -149,7 +162,8 @@
                             tooltip: 'File Manager',
                             click: function() {
                                 opener = 'content';
-                                window.open('{{ route('fm.summernote') }}', 'filemanager',
+                                window.open('{{ route('fm.summernote') }}',
+                                    'filemanager',
                                     "_top",
                                     "toolbar=0,titlebar=0,scrollbars=0,location=0,menubar=0,status=0"
                                 );
