@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('options', function (Blueprint $table) {
             $table->id();
-            $table->integer('author')->default(0);
-            $table->text('body');
-            $table->integer('commentable_id')->nullable();
-            $table->string('commentable_type')->nullable();
-            $table->enum('status', ['draft', 'approved', 'spam'])->default('draft');
+            $table->string('name')->unique();
+            $table->string('value')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('options');
     }
 };

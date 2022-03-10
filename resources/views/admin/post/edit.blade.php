@@ -3,7 +3,6 @@
 @section('breadcrumb')
     <li class="breadcrumb-item active">Post</li>
 @endsection
-{{$errors}}
 @section('content')
     <div class="content">
         <div class="container-fluid">
@@ -78,7 +77,7 @@
                                     <div class="form-group">
                                         <button type="submit" name="status" value="draft" class="btn btn-primary">Save as
                                             draft</button>
-                                        <button type="submit" name="status" value="published"
+                                        <button type="submit" name="status" value="publishable"
                                             class="btn btn-success">Publish</button>
                                     </div>
                                 </form>

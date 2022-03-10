@@ -20,10 +20,24 @@
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                        <div class="col-sm-6">
+                        <div class="col-sm-3">
                             <h1 class="m-0">@yield('pagename')</h1>
+
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4 mt-1">
+                            @if (session('error'))
+                                <h3 class="text-danger">
+                                    {{ session('error') }}
+                                </h3>
+                            @endif
+                            @if (session('success'))
+                                <h3 class="text-success">
+                                    {{ session('success') }}
+                                </h3>
+                            @endif
+                        </div>
+
+                        <div class="col-sm-5">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Home</a></li>
                                 @yield('breadcrumb')
@@ -32,6 +46,9 @@
                     </div>
                 </div>
             </div>
+
+
+
 
             @yield('content')
 

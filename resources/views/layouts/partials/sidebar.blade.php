@@ -15,25 +15,28 @@
 
 
     <!-- Recent Posts ====== -->
-    <div class="bg-white shadow-sm rounded p-3 mb-4">
-        <h4 class="text-5">Recent Posts</h4>
-        <hr class="mx-n3">
-        <div class="side-post">
-            @foreach ($recentPosts as $post)
-                <div class="item-post">
-                    <div class="img-thumb">
-                        <a href="{{ route('post', $post) }}">
-                            <img class="rounded w-100" src="http://localhost:8000/images/blog/post-1.jpg" title=""
-                                alt="">
-                        </a>
+    @if ($blade !== 'index')
+        <div class="bg-white shadow-sm rounded p-3 mb-4">
+            <h4 class="text-5">Recent Posts</h4>
+            <hr class="mx-n3">
+            <div class="side-post">
+                @foreach ($recentPosts as $post)
+                    <div class="item-post">
+                        <div class="img-thumb">
+                            <a href="{{ route('post', $post) }}">
+                                <img class="rounded w-100" src="{{$post->image }}" title=""
+                                    alt="">
+                            </a>
+                        </div>
+                        <div class="captions"> <a class="text-dark"
+                                href="{{ route('post', $post) }}">{{ $post->title }}</a>
+                            {{-- <p class="date-post">{{ $post->updated_at->format('Y-m-d') }}</p> --}}
+                        </div>
                     </div>
-                    <div class="captions"> <a class="text-dark" href="{{ route('post', $post) }}">{{ $post->title }}</a>
-                        {{-- <p class="date-post">{{ $post->updated_at->format('Y-m-d') }}</p> --}}
-                    </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
-    </div>
+    @endif
 
     <!-- Popular Posts ====== -->
     <div class="bg-white shadow-sm rounded p-3 mb-4">
@@ -44,11 +47,12 @@
                 <div class="item-post">
                     <div class="img-thumb">
                         <a href="{{ route('post', $post) }}">
-                            <img class="rounded w-100" src="http://localhost:8000/images/blog/post-1.jpg" title=""
+                            <img class="rounded w-100" src="{{$post->image }}" title=""
                                 alt="">
                         </a>
                     </div>
-                    <div class="captions"> <a class="text-dark" href="{{ route('post', $post) }}">{{ $post->title }}</a>
+                    <div class="captions"> <a class="text-dark"
+                            href="{{ route('post', $post) }}">{{ $post->title }}</a>
                         {{-- <p class="date-post">{{ $post->updated_at->format('Y-m-d') }}</p> --}}
                     </div>
                 </div>

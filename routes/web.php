@@ -34,4 +34,3 @@ Auth::routes();
 Route::get('/social-auth/{provider}', [SocialAuthController::class, 'redirectToProvider'])->name('social-auth');
 Route::get('/social-auth/{provider}/callback', [SocialAuthController::class, 'handleProviderCallback'])->name('social-auth-callback');
 
-

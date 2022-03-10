@@ -43,9 +43,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg d-flex align-items-center">
-                    <p class="copyright-text text-center text-lg-left mt-0 mb-2 mb-lg-0">Developed by
-                        <a target="_blank" href="https://sankarbala.github.io/portfolio/">Sankar Bala</a>
-                    </p>
+                   
                 </div>
                 <div class="col-lg d-flex align-items-center align-items-lg-end flex-column">
                     <ul class="social-icons social-icons-colored">

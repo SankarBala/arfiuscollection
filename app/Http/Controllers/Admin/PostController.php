@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+
 
 class PostController extends Controller
 {
@@ -15,6 +14,7 @@ class PostController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->authorizeResource(Post::class, 'post');
     }
     /**
      * Display a listing of the resource.
@@ -23,7 +23,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        view()->share('posts', Post::paginate(10));
+        view()->share('posts', Post::orderBy('created_at', 'desc')->paginate(10));
         return view('admin.post.index');
     }
 
@@ -137,4 +137,13 @@ class PostController extends Controller
         $post->delete();
         return redirect()->route('admin.post.index')->with('success', 'Post deleted successfully');
     }
+
+
+    public function update_status(Request $request, Post $post)
+    {
+        $post->status = $request->status;
+        $post->update();
+        return redirect()->route('admin.post.index')->with('success', 'Post published successfully');
+    }
+
 }

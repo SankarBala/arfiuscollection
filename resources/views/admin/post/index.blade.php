@@ -37,16 +37,44 @@
                                                 <td>{{ $post->status }}</td>
                                                 <td>{{ $post->created_at->format('Y-m-d') }}</td>
                                                 <td>
-                                                    <a href="{{ route('admin.post.edit', $post->id) }}"
-                                                        class="btn btn-info">Edit</a>
-                                                    <a href="{{ route('admin.post.show', $post->id) }}"
-                                                        class="btn btn-success">View</a>
-                                                    <form action="{{ route('admin.post.destroy', $post->id) }}"
-                                                        method="post" style="display: inline-block">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                                    </form>
+                                                    @can('view-post', $post)
+                                                        <a href="{{ route('admin.post.show', $post) }}"
+                                                            class="btn btn-primary">View</a>
+                                                    @endcan
+                                                    @can('publish-post', $post)
+                                                        @if ($post->status !== 'published')
+                                                            <form class="d-inline"
+                                                                action="{{ route('admin.post.update-status', $post) }}"
+                                                                method="post">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <button name="status" value="published" type="submit"
+                                                                    class="btn btn-success px-3">&nbsp; Publish&nbsp;</button>
+                                                            </form>
+                                                        @else
+                                                            <form class="d-inline"
+                                                                action="{{ route('admin.post.update-status', $post) }}"
+                                                                method="post">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <button name="status" value="draft" type="submit"
+                                                                    class="btn btn-warning">Unpublish</button>
+                                                            </form>
+                                                        @endif
+                                                    @endcan
+                                                    @can('update-post', $post)
+                                                        <a href="{{ route('admin.post.edit', $post) }}"
+                                                            class="btn btn-info">Edit</a>
+                                                    @endcan
+                                                    @can('delete-post', $post)
+                                                        <form action="{{ route('admin.post.destroy', $post) }}" method="post"
+                                                            style="display: inline-block">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                    @endcan
+
                                                 </td>
                                             </tr>
                                         @endforeach

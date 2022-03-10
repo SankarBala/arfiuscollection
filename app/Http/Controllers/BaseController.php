@@ -10,10 +10,10 @@ use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
 
 class BaseController extends Controller
 {
@@ -44,12 +44,20 @@ class BaseController extends Controller
 
     public function post(Post $post)
     {
-        if (!Gate::allows('view-post', $post)) {
-            abort(403);
+
+
+        if ($post->status !== 'published') {
+            return abort(404);
         }
 
         $post->increment('view');
+
+        $previousPost = Post::where('id', '<', $post->id)->where('status', 'published')->orderBy('id', 'desc')->first();
+        $nextPost = Post::where('id', '>', $post->id)->where('status', 'published')->orderBy('id', 'asc')->first();
+
         view()->share('related_posts', Post::where('category_id', $post->category_id)->where('id', '!=', $post->id)->orderBy('created_at', 'desc')->take(4)->get());
+        view()->share('previousPost', $previousPost);
+        view()->share('nextPost', $nextPost);
 
         return view('post')->with('post', $post);
     }
@@ -130,7 +138,7 @@ class BaseController extends Controller
             'commentable_type' => 'required',
         ]);
 
-        $user = User::firstOrCreate(['email' => $request->email], ['name' => $request->name, 'password' => Hash::make('password')]);
+        $user = User::firstOrCreate(['email' => $request->email], ['name' => $request->name, 'password' => Hash::make(Str::random(20))]);
 
         Auth::login($user);
 

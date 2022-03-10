@@ -27,6 +27,8 @@ class CreateUserDirectory
      */
     public function handle(Registered $event)
     {
+        $user = $event->user;
+        $user->assignRole('user');
         Storage::disk('users')->makeDirectory($event->user->email);
     }
 }

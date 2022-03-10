@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->integer('category_id')->nullable();
             $table->string('author')->default(0);
-            $table->enum('status', ['approved', 'draft', 'rejected', 'published', 'premium'])->default('draft');
+            $table->enum('status', ['publishable', 'draft', 'rejected', 'published', 'premium'])->default('draft');
             $table->integer('view')->default(0);
             $table->integer('like')->default(0);
             $table->integer('dislike')->default(0);

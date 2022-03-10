@@ -20,22 +20,38 @@
                             <li><i class="fas fa-calendar-alt"></i> {{ $post->updated_at->format('Y-m-d') }}</li>
                             <li><a href=""><i class="fas fa-user"></i> Arfius Collection </a></li>
                             <li><a href="#comments"><i class="fas fa-comments"></i> {{ $post->comments->count() }}</a>
-                            </li>
+                            <li><a href="#read"><i class="fas fa-eye"></i> {{ $post->view }}</a>
+                            <li class="fb-share-button d-inline" data-href="{{ route('post', $post) }}"
+                                data-layout="button_count" data-size="large"></li>
                         </ul>
                         <img class="img-fluid" src="images/blog/post-1.jpg" alt="">
-                        <div class="card-body px-0 pb-0">
+                        <div class="card-body px-0 pb-0 text-justify">
                             {{ $post->content }}
                         </div>
                         <hr class="pb-0">
                         <div class="d-flex pb-4 mt-0">
                             <div class="mr-auto mt-1">
+                                @if ($previousPost)
+                                    <a href="{{ route('post', $previousPost) }}" class="btn btn-outline-primary btn-sm">
+                                        <i class="fas fa-arrow-left"></i>
+                                        Previous Post </a>
+                                @endif
+                            </div>
+                            {{-- <div class="mr-auto mt-1">
                                 <div class="d-inline mr-4 btn btn-info btn-sm">Views: {{ $post->view }}</div>
                             </div>
-                            <div class="d-inline-block rounded p-1"
+                            <div class="mr-auto d-inline-block rounded p-1"
                                 style="width:110px; height:38px; background-color:#1877F2;">
                                 <div class="fb-share-button d-inline mr-4" data-href="{{ route('post', $post) }}"
                                     data-layout="button_count" data-size="large">
                                 </div>
+                            </div> --}}
+                            <div class="mt-1">
+                                @if ($nextPost)
+                                    <a href="{{ route('post', $nextPost) }}" class="btn btn-outline-primary btn-sm">
+                                        <i class="fas fa-arrow-right"></i>
+                                        Next Post </a>
+                                @endif
                             </div>
                         </div>
 
@@ -101,19 +117,19 @@
                         <h5 class="mb-4 mt-3">Related Posts</h5>
                         <div class="side-post">
                             <div class="row">
-                                @foreach ($related_posts as $post)
+                                @foreach ($related_posts as $related_post)
                                     <div class="col-12 col-md-6 mb-3">
                                         <div class="item-post">
                                             <div class="img-thumb">
-                                                <a href="{{ route('post', $post) }}">
-                                                    <img class="rounded w-100 h-100"
-                                                        src="http://localhost:8000/images/blog/post-1.jpg" title=""
-                                                        alt=""></a>
+                                                <a href="{{ route('post', $related_post) }}">
+                                                    <img class="rounded w-100 h-100" src="{{ $related_post->image }}"
+                                                        title="" alt=""></a>
                                             </div>
-                                            <div class="captions"> <a class="text-info" href="{{ route('post', $post) }}">
-                                                    {{ $post->title }}
+                                            <div class="captions"> <a class="text-info"
+                                                    href="{{ route('post', $related_post) }}">
+                                                    {{ $related_post->title }}
                                                 </a>
-                                                <p class="date-post">{{ $post->created_at }}</p>
+                                                <p class="date-post">{{ $related_post->created_at }}</p>
                                             </div>
                                         </div>
                                     </div>

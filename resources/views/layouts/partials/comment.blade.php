@@ -11,7 +11,8 @@
                         <span class="mr-1">
                             <i class="fas fa-reply-all"></i></span>
                         Reply
-                    </a> {{ $children->user->name }}
+                    </a>
+                    {{ optional($children->user)->name }}
                     <span class="text-muted text-2 font-weight-400 d-block d-sm-inline-block mt-2 mt-sm-0">
                         <em>{{ $children->updated_at->format('M d Y') }}</em>
                         {{-- @if (auth()->user()->id == $children->user->id)
@@ -44,7 +45,7 @@
                         </span>
                         Reply
                     </a>
-                    {{ $children->user->name }}
+                    {{ optional($children->user)->name }}
                     <span class="text-muted text-2 font-weight-400 d-block d-sm-inline-block mt-2 mt-sm-0">
                         <em>{{ $children->updated_at->format('M d Y') }}</em>
 
