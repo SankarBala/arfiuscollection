@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Policies\CommentPolicy;
 use App\Policies\PostPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -36,6 +37,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('update-post', [PostPolicy::class, 'update']);
         Gate::define('delete-post', [PostPolicy::class, 'delete']);
         Gate::define('publish-post', [PostPolicy::class, 'publish']);
+        Gate::define('index-comment', [CommentPolicy::class, 'viewAny']);
+        Gate::define('update-comment', [CommentPolicy::class, 'update']);
+
 
 
 

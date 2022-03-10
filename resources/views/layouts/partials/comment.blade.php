@@ -1,4 +1,4 @@
-@if ($children->comments->count() > 0)
+@if ($children->comments->where('status', 'approved')->count() > 0)
     <li>
         <div class="row" id="{{ $children->id }}">
             <div class="col-auto pr-2">
@@ -25,7 +25,7 @@
             </div>
         </div>
         <ul>
-            @foreach ($children->comments as $comment)
+            @foreach ($children->comments->where('status', 'approved') as $comment)
                 @include('layouts.partials.comment', [
                     'children' => $comment,
                 ])

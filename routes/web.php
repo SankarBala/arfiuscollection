@@ -28,6 +28,7 @@ Route::post('/subscription', [BaseController::class, 'subscription'])->name('sub
 Route::post('/comment', [BaseController::class, 'comment'])->name('comment-post');
 Route::get('/profile', [BaseController::class, 'profile'])->name('profile');
 Route::get('/privacy-policies', [BaseController::class, 'privacyPolicies'])->name('privacyPolicies');
+Route::get('/sitemap', [BaseController::class, 'sitemap'])->name('sitemap');
 
 Auth::routes();
 

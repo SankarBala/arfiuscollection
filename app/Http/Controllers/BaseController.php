@@ -151,4 +151,12 @@ class BaseController extends Controller
 
         return back();
     }
+
+    public function sitemap()
+    {
+        $posts = Post::where('status', 'published')->get();
+        $categories = Category::all();
+
+        return response()->view('sitemap', compact('posts', 'categories'));
+    }
 }

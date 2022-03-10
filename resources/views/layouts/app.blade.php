@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
     <link href="images/favicon.png" rel="icon" />
     <title>Arfius Collection</title>
-    <meta name="description" content="Quickai - Recharge & Bill Payment, Booking HTML5 Template">
-    <meta name="author" content="harnishdesign.net">
+    <meta name="description" content="{{env('APP_NAME') }}">
+    <meta name="author" content="{{env('APP_NAME')}}">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900'
         type='text/css'>
     <link rel="stylesheet" type="text/css" href="{{asset('vendor/bootstrap/css/bootstrap.min.css') }}" />

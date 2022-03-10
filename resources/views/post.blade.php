@@ -19,7 +19,7 @@
                         <ul class="meta-blog mb-4">
                             <li><i class="fas fa-calendar-alt"></i> {{ $post->updated_at->format('Y-m-d') }}</li>
                             <li><a href=""><i class="fas fa-user"></i> Arfius Collection </a></li>
-                            <li><a href="#comments"><i class="fas fa-comments"></i> {{ $post->comments->count() }}</a>
+                            <li><a href="#comments"><i class="fas fa-comments"></i> {{ $post->comments->where('status', 'approved')->count() }}</a>
                             <li><a href="#read"><i class="fas fa-eye"></i> {{ $post->view }}</a>
                             <li class="fb-share-button d-inline" data-href="{{ route('post', $post) }}"
                                 data-layout="button_count" data-size="large"></li>
@@ -139,10 +139,10 @@
                         <hr>
 
                         <!-- Comments ========= -->
-                        <h5 id="comments" class="mb-4 mt-3">Comments ({{ $post->comments->count() }})</h5>
+                        <h5 id="comments" class="mb-4 mt-3">Comments ({{ $post->comments->where('status', 'approved')->count() }})</h5>
                         <div class="post-comment">
                             <ul>
-                                @foreach ($post->comments as $comment)
+                                @foreach ($post->comments->where('status', 'approved') as $comment)
                                     @include('layouts.partials.comment', [
                                         'children' => $comment,
                                     ])

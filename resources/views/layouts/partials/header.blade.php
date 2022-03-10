@@ -23,7 +23,7 @@
                                     href="{{ route('index') }}">Home</a>
                             </li>
                             <li class=""><a class=""
-                                    href="{{ route('index') }}">Write a blog</a>
+                                    href="{{ route('admin.post.create') }}">Write a blog</a>
                             </li>
                             <li class=""><a class=""
                                     href="{{ route('categories') }}">categories</a></li>

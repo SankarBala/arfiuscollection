@@ -42,7 +42,7 @@
                                                             class="btn btn-primary">View</a>
                                                     @endcan
                                                     @can('publish-post', $post)
-                                                        @if ($post->status !== 'published')
+                                                        @if ($post->status == 'publishable')
                                                             <form class="d-inline"
                                                                 action="{{ route('admin.post.update-status', $post) }}"
                                                                 method="post">
@@ -51,6 +51,15 @@
                                                                 <button name="status" value="published" type="submit"
                                                                     class="btn btn-success px-3">&nbsp; Publish&nbsp;</button>
                                                             </form>
+                                                        @elseif ($post->status == 'published')
+                                                            <form class="d-inline"
+                                                                action="{{ route('admin.post.update-status', $post) }}"
+                                                                method="post">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <button name="status" value="publishable" type="submit"
+                                                                    class="btn btn-warning px-3">Unpublish</button>
+                                                            </form>
                                                         @else
                                                             <form class="d-inline"
                                                                 action="{{ route('admin.post.update-status', $post) }}"
@@ -58,20 +67,21 @@
                                                                 @csrf
                                                                 @method('PUT')
                                                                 <button name="status" value="draft" type="submit"
-                                                                    class="btn btn-warning">Unpublish</button>
+                                                                    class="btn btn-dark disabled">On Hold</button>
                                                             </form>
                                                         @endif
                                                     @endcan
                                                     @can('update-post', $post)
                                                         <a href="{{ route('admin.post.edit', $post) }}"
-                                                            class="btn btn-info">Edit</a>
+                                                            class="btn btn-info @if ($post->status == 'published') disabled @endif">Edit</a>
                                                     @endcan
                                                     @can('delete-post', $post)
                                                         <form action="{{ route('admin.post.destroy', $post) }}" method="post"
                                                             style="display: inline-block">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                            <button type="submit"
+                                                                class="btn btn-danger @if ($post->status == 'published') disabled @endif">Delete</button>
                                                         </form>
                                                     @endcan
 

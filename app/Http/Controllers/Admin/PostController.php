@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\PostPublished;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
@@ -141,8 +142,17 @@ class PostController extends Controller
 
     public function update_status(Request $request, Post $post)
     {
+        $this->validate($request, [
+            'status' => 'required|in:publishable,draft,rejected,published'
+        ]);
+
         $post->status = $request->status;
         $post->update();
+
+        if($request->status == 'published') {
+            event(new PostPublished($post));
+         } 
+
         return redirect()->route('admin.post.index')->with('success', 'Post published successfully');
     }
 

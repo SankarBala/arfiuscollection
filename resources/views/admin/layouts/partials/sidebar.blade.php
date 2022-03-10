@@ -55,6 +55,14 @@
                         </ul>
                     </li>
                 @endcan
+                @can('index-comment')
+                    <li class="nav-item">
+                        <a href="{{ route('admin.comment.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-comments"></i>
+                            <p>Comments</p>
+                        </a>
+                    </li>
+                @endcan
                 @can('file-manager')
                     <li class="nav-item">
                         <a href="{{ route('admin.file-manager') }}" class="nav-link">

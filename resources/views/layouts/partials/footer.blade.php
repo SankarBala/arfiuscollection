@@ -7,6 +7,7 @@
                     <li class="nav-item"> <a class="nav-link" href="{{ route('about') }}">About Us</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('contact') }}">Contact US</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('privacyPolicies') }}">Privacy Policy</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('sitemap') }}">Site Map</a></li>
                 </ul>
             </div>
             <div class="col-sm-6 col-md mb-3 mb-md-0">

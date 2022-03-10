@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\PostController;
@@ -28,6 +29,7 @@ Route::get('/subscription', [DashboardController::class, 'subscription'])->name(
 Route::put('/status/{post}', [PostController::class, 'update_status'])->name('post.update-status');
 Route::resource('/post', PostController::class)->names('post');
 Route::resource('/category', CategoryController::class)->names('category');
+Route::resource('/comment', CommentController::class)->names('comment');
 
 Route::resource('/role', RoleController::class);
 Route::resource('/permission', PermissionController::class);
