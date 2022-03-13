@@ -105,11 +105,10 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         
-        
         $this->validate($request, [
-            'title' => 'required|unique:posts|max:255',
+            'title' => 'required|max:255',
             'slug' => 'required|unique:posts,slug,'.$post->id.'|max:255',
-            'status' => 'required|in:approved,draft,rejected,premium,published',
+            'status' => 'required|in:publishable,draft,rejected,published',
             'content' => 'required',
             'category_id' => 'exists:categories,id|nullable',
             'image' => 'string|url|nullable'
@@ -154,6 +153,20 @@ class PostController extends Controller
          } 
 
         return redirect()->route('admin.post.index')->with('success', 'Post published successfully');
+    }
+
+    public function update_view(Request $request){
+
+        $this->validate($request, [
+            'view' => 'required|between:0,99999',
+            'id' => 'required|exists:posts,id'
+        ]);
+
+        $post = Post::find($request->id);
+        $post->view = $request->view;
+        $post->update();
+
+        return response()->json(['message' => 'Update post successfully'], 201);
     }
 
 }

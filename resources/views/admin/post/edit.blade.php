@@ -10,9 +10,7 @@
                 <div class="card card-default">
                     <div class="card-header">
                         <h3 class="card-title">Create Post</h3>
-
                     </div>
-
                     <div class="card-body" style="display: block;">
                         <div class="row">
                             <div class="col">
@@ -24,13 +22,14 @@
                                         <div class="col-md-8">
                                             <div class="form-group">
                                                 <label for="title">Title</label>
-                                                <input type="text" name="title" class="form-control" id="title"
-                                                    placeholder="Title" value={{ $post->title }} />
+                                                <input type="text" name="title" class="form-control"
+                                                    value="{{ $post->title }}" autocomplete="off" id="title"
+                                                    placeholder="Title" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="slug">Slug</label>
                                                 <input type="text" name="slug" class="form-control" id="slug"
-                                                    placeholder="Slug" value={{ $post->slug }} />
+                                                    placeholder="Slug" value="{{ $post->slug }}" />
                                             </div>
 
                                             <div class="form-group">
@@ -102,7 +101,7 @@
 
     <style type="text/css">
         #imageSelect {
-            z-index: 9999 !important;
+            /* z-index: 9999 !important; */
         }
 
         .hoverable {

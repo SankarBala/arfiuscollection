@@ -25,6 +25,7 @@
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Roles</th>
+                                            <th>Posts</th>
                                             <th>Created At</th>
                                             <th>Operation</th>
                                         </tr>
@@ -42,6 +43,7 @@
                                                         @endforeach
                                                     @endif
                                                 </td>
+                                                <td>{{ $user->posts->count() }}</td>
                                                 <td>{{ $user->created_at->format('Y-m-d') }}</td>
                                                 <td>
                                                     <a href="{{ route('admin.user.edit', $user->id) }}"

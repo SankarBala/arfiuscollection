@@ -27,6 +27,7 @@ Route::get('/file-manager', [DashboardController::class, 'file_manager'])->name(
 Route::get('/subscription', [DashboardController::class, 'subscription'])->name('subscription');
 
 Route::put('/status/{post}', [PostController::class, 'update_status'])->name('post.update-status');
+Route::post('/update-view', [PostController::class, 'update_view'])->name('post.update-view');
 Route::resource('/post', PostController::class)->names('post');
 Route::resource('/category', CategoryController::class)->names('category');
 Route::resource('/comment', CommentController::class)->names('comment');

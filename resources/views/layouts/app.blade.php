@@ -48,24 +48,79 @@
 
     <!-- Back to Top ========== -->
     @include('components.gototop')
-    <!-- Login Modal ===== -->
-    @include('components.login')
-    <!-- Login Modal End -->
 
-    <!-- Sign Up Modal ====== -->
-    @include('components.signup')
-    <!-- Sign Up Modal End -->
 
-    <!-- Forgot Password Modal ====== -->
-    @include('components.forgot')
-    <!-- Forgot Password Modal End -->
 
     <!-- Script -->
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-    
+
     @stack('scripts')
+
+    <div id="subscribe-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content border-0">
+                <div class="modal-body py-4 px-0">
+                    {{-- <button type="button" class="close close-outside" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> --}}
+                    <div class="row">
+                        <div class="col-11 col-md-10 mx-auto">
+                            <h3 class="text-center mt-3 mb-4">Subscribe Now</h3>
+                            <p class="text-center text-3 text-muted">You will get all the updates from this website.</p>
+                            <form id="subscribeForm" class="form-border" method="post">
+                                <div class="form-group">
+                                    <input type="email" class="form-control border-2" id="subscribeEmailAddress"
+                                        required placeholder="Enter Email">
+                                </div>
+                                <button id="subscribe" class="btn btn-primary btn-block my-4"
+                                    type="submit">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"
+        integrity="sha512-wT7uPE7tOP6w4o28u1DN775jYjHQApdBnib5Pho4RB0Pgd9y7eSkAV1BTqQydupYDB9GBhTcQQzyNMPMV3cAew=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            if (!Cookies.get("subscribed")) {
+                setTimeout(function() {
+                    $('#subscribe-modal').modal('show');
+                }, 5000);
+            }
+
+            $('#subscribeForm').submit(function(e) {
+                e.preventDefault();
+                var email = $('#subscribeEmailAddress').val();
+                $.ajax({
+                    url: "{{ route('subscription') }}",
+                    type: "POST",
+                    data: {
+                        email: email,
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: function(data) {
+                        $('#subscribe-modal').modal('hide');
+                        Cookies.set("subscribed", true, {
+                            expires: 365,
+                            SameSite: 'Lax'
+                        });
+                        $('#subscribeEmailAddress').val('');
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+            });
+
+        });
+    </script>
 
 </body>
 

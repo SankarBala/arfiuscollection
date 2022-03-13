@@ -17,12 +17,16 @@
                             <li><a href="#comments"><i class="fas fa-comments"></i>
                                     {{ $post->comments->where('status', 'approved')->count() }}</a>
                             <li><a href="#read"><i class="fas fa-eye"></i> {{ $post->view }}</a>
-                            <li class="fb-share-button d-inline" data-href="{{ route('post', $post) }}"
-                                data-layout="button_count" data-size="large"></li>
+                            <li class="mx-1"><p class="fb-share-button d-inline" data-href="{{ route('post', $post) }}"
+                                data-layout="button_count" data-size="large"><p></li>
+                            <li><a class="twitter-share-button bg-primary px-2 text-white py-1 my-0 rounded" target="_blank"
+                                    href="https://twitter.com/intent/tweet?url={{ route('post', $post) }}&text={{ $post->title }}"
+                                    data-size="large">
+                                    <i class="fab fa-twitter text-white"></i>  Tweet</a></li>
                         </ul>
-                        <img class="img-fluid" src="images/blog/post-1.jpg" alt="">
+                        <img class="img-fluid" src="{{ $post->image }}" alt="">
                         <div class="card-body px-0 pb-0 text-justify">
-                            <content>{!! $post->content !!} </content>
+                            <content class="">{!! $post->content !!} </content>
                         </div>
                         <hr class="pb-0">
                         <div class="d-flex pb-4 mt-0">

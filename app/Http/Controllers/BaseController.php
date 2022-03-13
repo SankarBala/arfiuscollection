@@ -117,8 +117,9 @@ class BaseController extends Controller
 
     public function subscription(Request $request)
     {
+
         $request->validate([
-            'email' => 'required|email|unique:subscriptions',
+            'email' => 'required|email',
         ]);
 
         $subscription = new Subscription();

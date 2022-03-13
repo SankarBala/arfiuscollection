@@ -24,6 +24,7 @@
                                             <th>Title</th>
                                             <th>Feature</th>
                                             <th>Status</th>
+                                            <th>View</th>
                                             <th>Posted at</th>
                                             <th>Action</th>
                                         </tr>
@@ -35,6 +36,7 @@
                                                 <td>{{ $post->title }}</td>
                                                 <td><img src="{{ $post->image }}" alt="" width="50"></td>
                                                 <td>{{ $post->status }}</td>
+                                                <td id="viewCount_{{ $post->id }}">{{ $post->view }}</td>
                                                 <td>{{ $post->created_at->format('Y-m-d') }}</td>
                                                 <td>
                                                     @can('view-post', $post)
@@ -84,7 +86,10 @@
                                                                 class="btn btn-danger @if ($post->status == 'published') disabled @endif">Delete</button>
                                                         </form>
                                                     @endcan
-
+                                                    @can('update-post', $post)
+                                                        <button class="btn btn-info"
+                                                            onclick="updateView({{ $post }})">View</button>
+                                                    @endcan
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -113,4 +118,27 @@
 @endpush
 
 @push('scripts')
+    <script type="text/javascript">
+        function updateView(post) {
+            var newView = prompt('Enter your new view number', post.view);
+
+            if (newView != null) {
+                $.ajax({
+                    url: '{{ route('admin.post.update-view') }}',
+                    type: 'POST',
+                    data: {
+                        'view': newView,
+                        'id': post.id,
+                        '_token': '{{ csrf_token() }}'
+                    },
+                    success: function(data) {
+                        $('#viewCount_' + post.id).html(newView);
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                });
+            }
+        }
+    </script>
 @endpush

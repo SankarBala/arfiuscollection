@@ -4,12 +4,12 @@
 <h1>{{ $post->title }}</h1>
 
 <div>
-    {{ Str::words($post->content, 40) }}
+    {!! Str::words($post->content, 40) !!}
 </div>
 <br>
 <a href="{{ route('post', $post) }}" style="display: block;
-        width: 200px;
-        height: 30px;
+        width: 250px;
+        height: 40px;
         background-color: rgb(5, 134, 172);
         color: white;
         text-decoration: none;
@@ -18,6 +18,6 @@
         padding: 5px;
         font-size: 24px;
         font-family: inherit;
-        border-radius: 4px;">
-    Read the post
+        line-height: 1.5;
+        border-radius: 4px;">Read the post
 </a>
